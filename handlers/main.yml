@@ -1,0 +1,16 @@
+# Standards: 0.1
+---
+- name: Kill firefox
+  command: killall Firefox
+  register: firefox_kill
+  failed_when: firefox_kill.rc != 0 and "No matching processes belonging to you were found" not in firefox_kill.stderr
+  become: "{{ (firefox_user != ansible_user_id) | bool }}"
+  become_user: "{{ firefox_user }}"
+
+- name: Start firefox
+  when: firefox_started
+  command: open -j /Applications/Firefox.app
+  become: "{{ (firefox_user != ansible_user_id) | bool }}"
+  become_user: "{{ firefox_user }}"
+
+...
