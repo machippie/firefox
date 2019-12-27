@@ -36,6 +36,7 @@
 
     - name: Check program running
       register: firefox_running
+      check_mode: False
       failed_when: False
       changed_when: firefox_running.stdout | length > 0 | bool
       command: pidof Firefox
