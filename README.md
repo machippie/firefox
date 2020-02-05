@@ -1,6 +1,6 @@
 # firefox
 
-[![Build Status](https://cloud.drone.io/api/badges/machippie/firefox/status.svg)](https://cloud.drone.io/machippie/google-chrome)
+[![Build Status](https://cloud.drone.io/api/badges/machippie/firefox/status.svg)](https://cloud.drone.io/machippie/firefox)
 
 Ansible role to configure firefox.
 
