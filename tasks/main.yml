@@ -20,33 +20,12 @@
       tags:
         - firefox
 
-    - name: Remove quarantine flag
-      register: firefox_quarantine
-      failed_when: firefox_quarantine.rc != 0 and "No such xattr" not in firefox_quarantine.stderr
-      changed_when: firefox_quarantine.rc == 0
-      command: xattr -d com.apple.quarantine /Applications/Firefox.app
-      tags:
-        - firefox
-
-    - name: Install pidof package
-      homebrew:
-        name: pidof
-      tags:
-        - firefox
-
-    - name: Check program running
-      register: firefox_running
-      check_mode: False
-      failed_when: False
-      changed_when: firefox_running.stdout | length > 0 | bool
-      command: pidof Firefox
-      tags:
-        - firefox
-
-    - name: Fact program running
-      set_fact:
-        firefox_started: "{{ firefox_running.stdout_lines | length > 0 | bool }}"
-      tags:
-        - firefox
+- name: Remove quarantine flag
+  register: firefox_quarantine
+  failed_when: firefox_quarantine.rc != 0 and "No such xattr" not in firefox_quarantine.stderr
+  changed_when: firefox_quarantine.rc == 0
+  command: xattr -d com.apple.quarantine /Applications/Firefox.app
+  tags:
+    - firefox
 
 ...
